@@ -229,6 +229,21 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            /* Optimizations for mobile autoplay */
+            will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* Ensure video loads and plays on mobile */
+        @media (max-width: 768px) {
+            .hero-video {
+                object-fit: cover;
+                object-position: center;
+                /* Force hardware acceleration */
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
         }
 
         .hero-video::before {
@@ -1178,7 +1193,7 @@
         /* Landscape Mobile */
         @media (max-height: 500px) and (orientation: landscape) {
             .hero {
-                height: 100vh;
+                height: 80vh;
                 padding: 80px 15px 20px;
             }
 
@@ -1269,7 +1284,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" webkit-playsinline>
             <source src="suggar1.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -1518,6 +1533,70 @@
 
         // Mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Force video autoplay on mobile
+            const heroVideo = document.getElementById('heroVideo');
+            
+            if (heroVideo) {
+                // Try to play video immediately
+                const playPromise = heroVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('Video autoplay started successfully');
+                    }).catch(error => {
+                        console.log('Autoplay prevented, trying alternative methods:', error);
+                        
+                        // Alternative method: try playing on user interaction
+                        const forcePlayOnInteraction = () => {
+                            heroVideo.play().then(() => {
+                                console.log('Video started after user interaction');
+                                document.removeEventListener('touchstart', forcePlayOnInteraction);
+                                document.removeEventListener('click', forcePlayOnInteraction);
+                            }).catch(err => console.log('Still failed:', err));
+                        };
+                        
+                        document.addEventListener('touchstart', forcePlayOnInteraction, { once: true });
+                        document.addEventListener('click', forcePlayOnInteraction, { once: true });
+                    });
+                }
+                
+                // Ensure video is muted and looped
+                heroVideo.muted = true;
+                heroVideo.loop = true;
+                
+                // Try to load and play when video is ready
+                heroVideo.addEventListener('loadeddata', function() {
+                    if (heroVideo.paused) {
+                        heroVideo.play().catch(e => console.log('Play failed on loadeddata:', e));
+                    }
+                });
+                
+                // Additional attempt when video can play
+                heroVideo.addEventListener('canplay', function() {
+                    if (heroVideo.paused) {
+                        heroVideo.play().catch(e => console.log('Play failed on canplay:', e));
+                    }
+                });
+                
+                // Ensure video stays in view and playing
+                const ensureVideoPlays = () => {
+                    if (heroVideo.paused && !heroVideo.ended) {
+                        heroVideo.play().catch(e => console.log('Play failed on scroll:', e));
+                    }
+                };
+                
+                // Try to play when hero section comes into view
+                const heroObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            ensureVideoPlays();
+                        }
+                    });
+                });
+                
+                heroObserver.observe(document.getElementById('home'));
+            }
+
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mobileNav = document.getElementById('mobileNav');
             
@@ -1654,22 +1733,36 @@
             });
         });
 
-        // Optimize video for mobile
-        const video = document.querySelector('.hero-video');
-        if (video && window.innerWidth <= 768) {
-            video.playbackRate = 0.8; // Slower playback on mobile for better performance
-        }
-
         // Load Twitter widgets
         if (window.twttr) {
             window.twttr.widgets.load();
         }
 
-        // Handle orientation change
+        // Handle orientation change and force video play
         window.addEventListener('orientationchange', function() {
             setTimeout(function() {
                 window.scrollTo(0, 0);
+                // Force video to play after orientation change
+                const heroVideo = document.getElementById('heroVideo');
+                if (heroVideo && heroVideo.paused) {
+                    heroVideo.play().catch(e => console.log('Play failed after orientation change:', e));
+                }
             }, 100);
+        });
+
+        // Force video play on any user interaction
+        const forceVideoPlay = function() {
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo && heroVideo.paused) {
+                heroVideo.play().then(() => {
+                    console.log('Video started after user interaction');
+                }).catch(e => console.log('Play failed on interaction:', e));
+            }
+        };
+
+        // Add multiple event listeners to catch any user interaction
+        ['touchstart', 'touchend', 'click', 'scroll', 'keydown'].forEach(event => {
+            document.addEventListener(event, forceVideoPlay, { once: true, passive: true });
         });
 
         // Prevent zoom on input focus (iOS)
