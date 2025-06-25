@@ -592,10 +592,7 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+
         }
 
         .about-text h2 {
@@ -1245,6 +1242,320 @@
                 --dark-light: #333333;
             }
         }
+
+        .about-content-centered {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-main {
+    background: var(--dark-light);
+    padding: 40px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+@media (max-width: 768px) {
+    .about-main {
+        padding: 30px 20px;
+    }
+    
+    .about-content-centered {
+        max-width: 100%;
+    }
+}
+/* Video Tutorials Section - Format Fix */
+.video-tutorials {
+    padding: 100px 0;
+    background: var(--dark-light);
+    position: relative;
+}
+
+.video-tutorials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, 
+        rgba(212, 175, 55, 0.05) 0%, 
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.video-slider-container {
+    max-width: 900px;
+    margin: 60px auto 0;
+    position: relative;
+    z-index: 2;
+}
+
+.video-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hover);
+}
+
+.video-slide {
+    display: none;
+    width: 100%;
+}
+
+.video-slide.active {
+    display: block;
+}
+
+.video-slide-content {
+    background: linear-gradient(135deg, var(--dark) 0%, rgba(26, 26, 26, 0.95) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+}
+
+.video-slide-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.08) 0%, 
+        transparent 50%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.video-info {
+    padding: 30px 40px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+}
+
+.video-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.video-info p {
+    color: var(--gray-light);
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 300;
+}
+
+.video-wrapper {
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* HAUTEUR FIXE POUR UNIFORMISER */
+    height: 450px;
+    background: var(--dark);
+}
+
+.tutorial-video {
+    /* DIMENSIONS CONTRÔLÉES */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Garde les proportions sans déformation */
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    background: var(--dark);
+}
+
+.tutorial-video:hover {
+    box-shadow: 0 20px 45px rgba(212, 175, 55, 0.2);
+    transform: scale(1.02);
+}
+
+.video-actions {
+    padding: 20px 40px 30px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.tutorial-link {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, var(--gold), var(--gold-light));
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.tutorial-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(45deg, var(--gold-light), var(--gold));
+}
+
+.tutorial-link i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+/* Slider Navigation */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.nav-btn {
+    background: linear-gradient(45deg, var(--gold), var(--gold-light));
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(45deg, var(--gold-light), var(--gold));
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: rgba(212, 175, 55, 0.6);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .video-tutorials {
+        padding: 60px 0;
+    }
+    
+    .video-slider-container {
+        margin-top: 40px;
+        padding: 0 15px;
+    }
+    
+    .video-info {
+        padding: 25px 20px 15px;
+    }
+    
+    .video-info h3 {
+        font-size: 1.4rem;
+    }
+    
+    .video-info p {
+        font-size: 0.9rem;
+    }
+    
+    .video-wrapper {
+        padding: 15px;
+        height: 350px; /* Hauteur réduite sur mobile */
+    }
+    
+    .video-actions {
+        padding: 15px 20px 25px;
+    }
+    
+    .tutorial-link {
+        padding: 10px 25px;
+        font-size: 0.85rem;
+    }
+    
+    .slider-nav {
+        gap: 20px;
+        margin-top: 25px;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-wrapper {
+        height: 280px; /* Encore plus petit sur très petit écran */
+        padding: 10px;
+    }
+    
+    .video-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .tutorial-link {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Alternative pour les très grandes vidéos */
+@media (min-width: 1200px) {
+    .video-wrapper {
+        height: 500px; /* Plus grand sur grands écrans */
+    }
+}
     </style>
 </head>
 <body>
@@ -1385,77 +1696,156 @@ The exclusive memecoin for those ready to level up their lifestyle. We're all be
         </div>
     </section>
 
-    <!-- Memes Section -->
-    <section id="memes" class="memes">
-        <div class="container">
-            <div class="section-title">
-                <h2>The Sugar Community Vibes</h2>
-                <p>When your portfolio is this sweet, the memes write themselves 🍯</p>
-            </div>
-            <div class="memes-grid">
-                <div class="meme-card">
-                    <div class="twitter-embed-container">
-                        <blockquote class="twitter-tweet" data-theme="dark">
-                            <p lang="en" dir="ltr">Just broke up with my portfolio because it wasn&#39;t treating me right. Time to find someone who appreciates luxury 💎 <a href="https://twitter.com/hashtag/SugarDaddySeason?src=hash&amp;ref_src=twsrc%5Etfw">#SugarDaddySeason</a> <a href="https://twitter.com/hashtag/CryptoLifestyle?src=hash&amp;ref_src=twsrc%5Etfw">#CryptoLifestyle</a></p>&mdash; Sugar Daddy Season (@SDaddySeason) <a href="https://twitter.com/SDaddySeason/status/1922791013417967940?ref_src=twsrc%5Etfw">November 12, 2024</a>
-                        </blockquote>
+ <!-- Video Tutorials Section -->
+<!-- Video Tutorials Section -->
+<section id="video-tutorials" class="video-tutorials">
+    <div class="container">
+        <div class="section-title">
+            <h2>Video Tutorials</h2>
+            <p>Watch these step-by-step guides to secure your $SUGAR 🎬</p>
+        </div>
+        
+        <div class="video-slider-container">
+            <div class="video-slider" id="videoSlider">
+                <!-- Slide 1 -->
+                <div class="video-slide active">
+                    <div class="video-slide-content">
+                        <div class="video-info">
+                            <h3>🚀 Direct via Phantom Wallet</h3>
+                            <p>The fastest way to get your $SUGAR fix</p>
+                        </div>
+                        <div class="video-wrapper">
+                            <video class="tutorial-video" controls preload="metadata">
+                                <source src="tuto1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-actions">
+                            <a href="https://phantom.app/" target="_blank" class="tutorial-link">
+                                <i class="fas fa-download"></i> Download Phantom Wallet
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="meme-card">
-                    <div class="twitter-embed-container">
-                        <blockquote class="twitter-tweet" data-theme="dark">
-                            <p lang="en" dir="ltr">Check out this tweet! <a href="https://twitter.com/hashtag/SugarDaddySeason?src=hash&amp;ref_src=twsrc%5Etfw">#SugarDaddySeason</a></p>&mdash; Sugar Daddy Season (@SDaddySeason) <a href="https://twitter.com/SDaddySeason/status/1923384720001232911?ref_src=twsrc%5Etfw">November 13, 2024</a>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <div class="meme-card">
-                    <div class="twitter-embed-container">
-                        <blockquote class="twitter-tweet" data-theme="dark">
-                            <a href="https://twitter.com/SDaddySeason/status/1922861258694410616?ref_src=twsrc%5Etfw">November 12, 2024</a>
-                        </blockquote>
+                
+                <!-- Slide 2 -->
+                <div class="video-slide">
+                    <div class="video-slide-content">
+                        <div class="video-info">
+                            <h3>💳 Via Coinbase</h3>
+                            <p>Perfect for beginners entering the sugar life</p>
+                        </div>
+                        <div class="video-wrapper">
+                            <video class="tutorial-video" controls preload="metadata">
+                                <source src="tuto2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-actions">
+                            <a href="https://www.coinbase.com/" target="_blank" class="tutorial-link">
+                                <i class="fas fa-coins"></i> Get Started with Coinbase
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="https://x.com/SDaddySeason" target="_blank" class="btn btn-primary" style="padding: 20px 40px; font-size: 18px;">
-                    <i class="fab fa-twitter"></i> Follow @SDaddySeason on X 🚀
-                </a>
+            <!-- Navigation -->
+            <div class="slider-nav">
+                <button class="nav-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="slider-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                </div>
+                <button class="nav-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
-    </section>
+        
+   
+    </div>
+</section>
+
+    <!-- Memes Section -->
+ <!-- Memes Section -->
+<section id="memes" class="memes">
+    <div class="container">
+        <div class="section-title">
+            <h2>The Sugar Community Vibes</h2>
+            <p>When your portfolio is this sweet, the memes write themselves 🍯</p>
+        </div>
+        <div class="memes-grid">
+            <div class="meme-card">
+                <div class="twitter-embed-container">
+                    <blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Summer is around the corner. These types of pics may become too numerous to post. Ngl. <a href="https://t.co/X9gYKGpVeK">pic.twitter.com/X9gYKGpVeK</a></p>&mdash; Sugar Daddy Season (@SDaddySeason) <a href="https://twitter.com/SDaddySeason/status/1922791013417967940?ref_src=twsrc%5Etfw">May 14, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                </div>
+            </div>
+
+            <div class="meme-card">
+                <div class="twitter-embed-container">
+                    <blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="qme" dir="ltr"> <a href="https://t.co/vevUuZi3Pe">pic.twitter.com/vevUuZi3Pe</a></p>&mdash; Sugar Daddy Season (@SDaddySeason) <a href="https://twitter.com/SDaddySeason/status/1923384720001232911?ref_src=twsrc%5Etfw">May 16, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                </div>
+            </div>
+
+            <div class="meme-card">
+                <div class="twitter-embed-container">
+                    <blockquote class="twitter-tweet" data-lang="en" data-theme="dark"><p lang="en" dir="ltr">It won’t be hard for us to get the masses to say “Sugar Daddy Season.” It’s kinda catchy. Isn’t it? <a href="https://t.co/iCbiUN2n7k">pic.twitter.com/iCbiUN2n7k</a></p>&mdash; Sugar Daddy Season (@SDaddySeason) <a href="https://twitter.com/SDaddySeason/status/1922861258694410616?ref_src=twsrc%5Etfw">May 15, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://x.com/SDaddySeason" target="_blank" class="btn btn-primary" style="padding: 20px 40px; font-size: 18px;">
+                <i class="fab fa-twitter"></i> Follow @SDaddySeason on X 🚀
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Sugar Daddy Season</h2>
-                    <p>Listen up, gorgeous! Sugar Daddy Season ($SUGAR) isn't your average memecoin - it's the Lamborghini of crypto, the Dom Pérignon of DeFi, the first-class upgrade your portfolio has been begging for.</p>
-                    <p>We're here to prove that being financially irresponsible has never looked so good. Why settle for ramen when you can have caviar? Why drive a Honda when you could lease a Bentley? $SUGAR is your ticket to the lifestyle you deserve.</p>
-                    <p>Join our exclusive club of financially blessed individuals who know that money can't buy happiness, but it can buy a yacht to cry on. And honey, that's close enough. 🛥️✨</p>
-                    
-                    <div class="contract-info">
-                        <h4>Contract Address (Copy if you're not broke):</h4>
-                        <div class="contract-address-container">
-                            <div class="contract-address" id="contractAddress">5iVmFCCwJTuuw7p4FrxYoZ1bUNdjg14j7uv5hMsMpump</div>
-                            <button class="copy-btn" id="copyBtn" onclick="copyContract()">
-                                <i class="fas fa-copy"></i>
-                                <span id="copyText">Copy</span>
-                            </button>
-                        </div>
-                    </div>
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Sugar Daddy Season</h2>
+                
+                <div class="video-container-about">
+                    <video class="about-video" controls preload="metadata">
+                        <source src="tuto3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-                <div class="about-image">
-                    <div class="luxury-graphic">
-                        <i class="fas fa-gem"></i>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="https://drive.google.com/file/d/1qRDtiZFgknG_YjjONIc01Zel2FY5tTYO/view" target="_blank" class="btn btn-primary">
+                        📄 Full Whitepaper
+                    </a>
+                </div>
+                
+                <div class="contract-info">
+                    <h4>Contract Address (Copy if you're not broke):</h4>
+                    <div class="contract-address-container">
+                        <div class="contract-address" id="contractAddress">5iVmFCCwJTuuw7p4FrxYoZ1bUNdjg14j7uv5hMsMpump</div>
+                        <button class="copy-btn" id="copyBtn" onclick="copyContract()">
+                            <i class="fas fa-copy"></i>
+                            <span id="copyText">Copy</span>
+                        </button>
                     </div>
                 </div>
             </div>
+            
+            <div class="about-image">
+                <div class="luxury-graphic">
+                    <i class="fas fa-gem"></i>
+                </div>
+            </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1474,6 +1864,57 @@ The exclusive memecoin for those ready to level up their lifestyle. We're all be
     </footer>
 
     <script>
+        // Video Slider Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.video-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Show current slide
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        // Pause all videos except current
+        slides.forEach((slide, i) => {
+            const video = slide.querySelector('video');
+            if (i !== index && video) {
+                video.pause();
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Event listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    // Auto-play (optional)
+    // setInterval(nextSlide, 10000); // Change slide every 10 seconds
+});
         // Copy contract address function
         function copyContract() {
             const contractAddress = document.getElementById('contractAddress').textContent;
@@ -1772,4 +2213,258 @@ The exclusive memecoin for those ready to level up their lifestyle. We're all be
     <!-- Twitter Widget Script -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
+
+<style>
+
+    /* Video styling dans about - Version améliorée */
+.video-container-about {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background: transparent; /* SUPPRIMER le fond noir */
+    border-radius: 12px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+    border: none; /* SUPPRIMER la bordure */
+}
+
+.about-video {
+   width: 100%;
+    height: 100%;
+    object-fit: cover; /* UTILISER cover au lieu de contain */
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: transparent; /* SUPPRIMER le fond */
+}
+
+.about-video:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .video-container-about {
+        height: 320px; /* Plus grand sur mobile aussi */
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container-about {
+        height: 280px;
+    }
+}
+    /* About Section */
+.about {
+    padding: 100px 0;
+    background: var(--dark-light);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 30px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Video styling dans about */
+.video-container-about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    background: var(--dark);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.about-video {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: var(--dark);
+}
+
+.about-video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.contract-info {
+    background: var(--dark);
+    padding: 25px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    margin-top: 30px;
+}
+
+.contract-info h4 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.contract-address-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.contract-address {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    word-break: break-all;
+    color: var(--gold-light);
+    flex: 1;
+}
+
+.copy-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 70px;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.copy-btn:active {
+    transform: translateY(0);
+}
+
+.copy-btn.copied {
+    background: #4ade80;
+    color: var(--white);
+}
+
+.copy-btn i {
+    font-size: 12px;
+}
+
+/* Logo diamant - gardé identique */
+.about-image {
+    text-align: center;
+}
+
+.luxury-graphic {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, var(--gold), var(--gold-light));
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--dark);
+    box-shadow: var(--shadow-hover);
+    transition: all 0.3s ease;
+}
+
+.luxury-graphic:hover {
+    transform: scale(1.05) rotate(10deg);
+    box-shadow: 0 25px 60px rgba(212, 175, 55, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .about-text h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .video-container-about {
+        height: 280px;
+        margin-bottom: 20px;
+    }
+    
+    .contract-info {
+        padding: 20px;
+        margin-top: 25px;
+    }
+    
+    .contract-info h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .contract-address-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .contract-address {
+        font-size: 0.8rem;
+        padding: 8px;
+        text-align: center;
+    }
+    
+    .copy-btn {
+        align-self: stretch;
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    .luxury-graphic {
+        width: 200px;
+        height: 200px;
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container-about {
+        height: 220px;
+    }
+    
+    .luxury-graphic {
+        width: 150px;
+        height: 150px;
+        font-size: 2.5rem;
+    }
+}
+</style>
 </html>
